@@ -1,0 +1,12 @@
+# Ficheiros gerados pelo Flutter (recriam-se com "flutter pub get" / "flutter build")
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/*.iml
+**/.idea/
+
+# Ficheiros de sistema e registos
+.DS_Store
+Thumbs.db
+*.log
