@@ -1,106 +1,99 @@
 import 'package:flutter/foundation.dart';
 
-import '../data/sample_data.dart';
-import '../models/report.dart';
-import '../models/user.dart';
-import '../utils/pt_dates.dart';
-import 'community_controller.dart';
-import 'entry_controller.dart';
+import '../data/comunidade_demo.dart';
+import '../models/acao_admin.dart';
+import '../models/denuncia.dart';
+import '../models/utilizador.dart';
+import 'comunidade_controller.dart';
+import 'registo_controller.dart';
 
-/// Controller da Administração: trata as denúncias, mostra estatísticas
-/// e guarda o registo das ações dos administradores.
 class AdminController extends ChangeNotifier {
-  final EntryController entryController;
-  final CommunityController communityController;
-  final List<AdminAction> _actions = sampleAdminActions;
+  final RegistoController registos;
+  final ComunidadeController comunidade;
+  final List<AcaoAdmin> _acoes = List.of(acoesDemo);
 
-  AdminController({required this.entryController, required this.communityController});
+  AdminController({required this.registos, required this.comunidade});
 
-  /// Nome do administrador no registo de ações ("Lurdes" → "lurdes.admin").
-  String adminHandle(User admin) => '${admin.name.toLowerCase()}.admin';
+  List<AcaoAdmin> get acoes => List.unmodifiable(_acoes);
+  List<Denuncia> get denuncias => registos.denuncias;
+  int get utilizadores => comunidade.numeroUtilizadores;
+  int get registosHoje => registos.registosHoje();
+  int get totalRegistos => registos.todos.length;
+  String get desafio => comunidade.desafio;
 
-  /// Ações, da mais recente para a mais antiga (a lista já está por essa ordem).
-  List<AdminAction> get actions => List.unmodifiable(_actions);
+  String nomeAdmin(Utilizador admin) => '${admin.nome.toLowerCase()}.admin';
 
-  /// Regista uma ação no início da lista (a mais recente fica em primeiro).
-  void _log(User admin, String description) {
-    _actions.insert(0, AdminAction(
-      adminName: adminHandle(admin),
-      description: description,
-      date: DateTime.now(),
-    ));
-    notifyListeners();
-  }
-
-  // ---------- Denúncias ----------
-
-  List<Report> get openReports => entryController.openReports;
-
-  /// Quem escreveu o conteúdo denunciado.
-  String authorOf(Report report) {
-    return report.comment?.authorName ?? communityController.authorName(report.entry);
-  }
-
-  /// Ocultar: esconde o registo (ou apaga o comentário) e fecha a denúncia.
-  void hide(Report report, User admin) {
-    if (report.comment != null) {
-      entryController.removeComment(report.entry, report.comment!);
-    } else {
-      entryController.hideEntry(report.entry);
+  String tituloDenuncia(Denuncia denuncia) {
+    final registo = registos.procurar(denuncia.registoId);
+    if (registo == null) {
+      return 'Registo apagado';
     }
-    entryController.closeReport(report);
-    _log(admin, 'ocultou «${report.title}»');
-  }
-
-  /// Avisar autor: o conteúdo fica, mas o autor é avisado (simulado).
-  void warnAuthor(Report report, User admin) {
-    entryController.closeReport(report);
-    _log(admin, 'avisou ${authorOf(report)}');
-  }
-
-  /// Ignorar: a denúncia não tinha razão; nada muda.
-  void ignore(Report report, User admin) {
-    entryController.closeReport(report);
-    _log(admin, 'ignorou a denúncia a «${report.title}»');
-  }
-
-  // ---------- Estatísticas ----------
-
-  int get userCount => communityController.userCount;
-
-  int get entriesToday {
-    int count = 0;
-    for (final entry in entryController.allEntries) {
-      if (daysBetween(entry.date, DateTime.now()) == 0) count++;
+    if (denuncia.comentarioId != null) {
+      return 'Comentário em «${registo.titulo}»';
     }
-    return count;
+    return registo.titulo;
   }
 
-  int get totalEntries => entryController.allEntries.length;
-
-  /// Tags usadas nos registos e quantas vezes, da mais usada para a menos.
-  List<MapEntry<String, int>> get tags {
-    final Map<String, int> counts = {};
-    for (final entry in entryController.allEntries) {
-      for (final tag in entry.tags) {
-        counts[tag] = (counts[tag] ?? 0) + 1;
+  String autorDenuncia(Denuncia denuncia) {
+    final registo = registos.procurar(denuncia.registoId);
+    if (registo == null) {
+      return '';
+    }
+    if (denuncia.comentarioId != null) {
+      for (final c in registo.comentarios) {
+        if (c.id == denuncia.comentarioId) {
+          return c.autor;
+        }
       }
     }
-    final list = counts.entries.toList();
-    list.sort((a, b) => b.value.compareTo(a.value));
-    return list;
+    return comunidade.nomeAutor(registo.autorEmail);
   }
 
-  // ---------- Desafios ----------
+  void ocultar(Denuncia denuncia, Utilizador admin) {
+    final titulo = tituloDenuncia(denuncia);
+    if (denuncia.comentarioId != null) {
+      registos.apagarComentario(denuncia.registoId, denuncia.comentarioId!);
+    } else {
+      registos.ocultar(denuncia.registoId);
+    }
+    registos.fecharDenuncia(denuncia.id);
+    _registarAcao(admin, 'ocultou «$titulo»');
+  }
 
-  String get challenge => communityController.challenge;
+  void avisarAutor(Denuncia denuncia, Utilizador admin) {
+    final autor = autorDenuncia(denuncia);
+    registos.fecharDenuncia(denuncia.id);
+    _registarAcao(admin, 'avisou $autor');
+  }
 
-  /// Publica um novo desafio da semana. Devolve null se correu bem, ou o erro.
-  String? publishChallenge(User admin, String text) {
-    text = text.trim();
-    if (text.isEmpty) return 'Escreve o desafio.';
-    communityController.setChallenge(text);
-    _log(admin, 'publicou um desafio');
+  void ignorar(Denuncia denuncia, Utilizador admin) {
+    final titulo = tituloDenuncia(denuncia);
+    registos.fecharDenuncia(denuncia.id);
+    _registarAcao(admin, 'ignorou a denúncia a «$titulo»');
+  }
+
+  Map<String, int> tags() {
+    final contagem = <String, int>{};
+    for (final r in registos.todos) {
+      for (final tag in r.tags) {
+        contagem[tag] = (contagem[tag] ?? 0) + 1;
+      }
+    }
+    return contagem;
+  }
+
+  String? publicarDesafio(Utilizador admin, String texto) {
+    if (texto.trim().isEmpty) {
+      return 'Escreve o desafio.';
+    }
+    comunidade.mudarDesafio(texto.trim());
+    _registarAcao(admin, 'publicou um desafio');
     return null;
+  }
+
+  void _registarAcao(Utilizador admin, String descricao) {
+    _acoes.insert(
+        0, AcaoAdmin(admin: nomeAdmin(admin), descricao: descricao, data: DateTime.now()));
+    notifyListeners();
   }
 }

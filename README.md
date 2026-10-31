@@ -11,7 +11,7 @@ O diário do percurso de estudante: app mobile feita em **Flutter/Dart** com a a
 | `G05_MyDay/02_Imagens` | Ecrãs do Figma (`figma_XX`) e da app (`app_XX`) |
 | `G05_MyDay/03_Videos` | Vídeos de demonstração e apresentação |
 | `G05_MyDay/04_Documentacao_Tecnica` | Arquitetura MVC, navegação, guia de estilo, como executar |
-| `G05_MyDay/05_Artefactos/my_day` | **Projeto Flutter** |
+| `G05_MyDay/05_Artefactos/my_day` | **Projeto Flutter** (`lib/`: models, data, controllers, screens, widgets) |
 | `G05_MyDay/06_Dados_Investigacao` | Dados de investigação |
 | `G05_MyDay/07_Autorizacoes` | Licenças e créditos |
 
