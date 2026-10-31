@@ -69,21 +69,33 @@ class _CriarContaPageState extends State<CriarContaPage> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(28, 54, 28, 24),
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: Cores.branco,
-                  border: Border.all(color: Cores.linha),
-                  borderRadius: BorderRadius.circular(12),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: Cores.branco,
+                    border: Border.all(color: Cores.linha),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(Icons.chevron_left, color: Cores.tinta),
                 ),
-                child: const Icon(Icons.chevron_left, color: Cores.tinta),
               ),
-            ),
+              Expanded(
+                child: Center(
+                  child: Image.asset(
+                    'assets/icons/logo.png',
+                    width: 32,
+                    height: 32,
+                    color: Cores.primaria,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 44),
+            ],
           ),
           const SizedBox(height: 20),
           const Text(
