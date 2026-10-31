@@ -8,9 +8,40 @@ void main() {
   test('login certo entra e login errado mostra erro', () {
     final app = criarControladores();
     expect(app.sessao.entrar('rodrigo@escola.pt', 'errada'), false);
-    expect(app.sessao.erro, 'Email ou palavra-passe incorretos.');
+    expect(app.sessao.erro, 'Palavra-passe incorreta.');
+    expect(app.sessao.semConta, false);
     expect(app.sessao.entrar('rodrigo@escola.pt', '123456'), true);
     expect(app.sessao.utilizador!.nome, 'Rodrigo Rodrigues');
+  });
+
+  test('entrar sem conta dá erro e depois a conta pode ser criada', () {
+    final app = criarControladores();
+    expect(app.sessao.entrar('nova@escola.pt', '123456'), false);
+    expect(app.sessao.semConta, true);
+    expect(app.sessao.erro, 'Não existe nenhuma conta com este email. Cria uma conta.');
+
+    final diferentes = app.sessao.criarConta(
+      nome: 'Nova Aluna',
+      email: 'nova@escola.pt',
+      palavraPasse: '123456',
+      confirmarPalavraPasse: '654321',
+      curso: 'Design',
+    );
+    expect(diferentes, false);
+    expect(app.sessao.erro, 'As palavras-passe não são iguais.');
+
+    final ok = app.sessao.criarConta(
+      nome: 'Nova Aluna',
+      email: 'nova@escola.pt',
+      palavraPasse: '123456',
+      confirmarPalavraPasse: '123456',
+      curso: 'Design',
+    );
+    expect(ok, true);
+    expect(app.sessao.utilizador!.nome, 'Nova Aluna');
+
+    app.sessao.sair();
+    expect(app.sessao.entrar('nova@escola.pt', '123456'), true);
   });
 
   test('o administrador é reconhecido', () {

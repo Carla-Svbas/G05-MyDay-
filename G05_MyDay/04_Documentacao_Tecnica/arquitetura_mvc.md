@@ -19,7 +19,7 @@ lib/
 | `models/` | `utilizador.dart`, `registo.dart` (+ `Visibilidade`), `comentario.dart`, `projeto.dart`, `grupo_estudo.dart`, `local.dart`, `conquista.dart`, `definicoes.dart`, `denuncia.dart`, `acao_admin.dart` |
 | `data/` | `utilizadores_demo.dart`, `registos_demo.dart`, `projetos_demo.dart`, `locais_demo.dart`, `comunidade_demo.dart` |
 | `controllers/` | `sessao_controller.dart`, `registo_controller.dart`, `projeto_controller.dart`, `comunidade_controller.dart`, `perfil_controller.dart`, `admin_controller.dart`, `controladores.dart` |
-| `screens/` | `login_page.dart`, `inicio_page.dart`, `diario_page.dart`, `lista_page.dart`, `mapa_page.dart`, `calendario_page.dart`, `novo_registo_page.dart`, `registo_page.dart`, `projetos_page.dart`, `projeto_page.dart`, `comunidade_page.dart`, `perfil_page.dart`, `admin_page.dart` |
+| `screens/` | `login_page.dart`, `criar_conta_page.dart`, `inicio_page.dart`, `diario_page.dart`, `lista_page.dart`, `mapa_page.dart`, `calendario_page.dart`, `novo_registo_page.dart`, `registo_page.dart`, `projetos_page.dart`, `projeto_page.dart`, `comunidade_page.dart`, `perfil_page.dart`, `admin_page.dart` |
 | `widgets/` | `registo_card.dart`, `projeto_card.dart`, `publicacao_card.dart`, `denuncia_card.dart`, `grupo_card.dart`, `barra_navegacao.dart`, `seletor.dart`, `botao_filtro.dart`, `etiqueta.dart`, `avatar.dart`, `titulo_secao.dart`, `mapa_fundo.dart`, `cores.dart`, `formatar_data.dart` |
 
 ## 2. Regras da aula aplicadas
@@ -68,6 +68,8 @@ Os registos, projetos e denúncias são identificados por um `id`. Os ecrãs de 
 
 - `main.dart` define a rota `'/'` (ecrã Entrar). "Terminar sessão" e "Sair" voltam lá com `pushNamedAndRemoveUntil('/')`.
 - Depois de entrar: `InicioPage` com a barra inferior (Diário, Projetos, +, Comunidade, Perfil). O administrador vai para `AdminPage`.
+- **Criar conta:** o botão "Criar conta" abre `CriarContaPage` (nome, email, curso, palavra-passe e confirmação). Se alguém tentar **Entrar** com um email que não tem conta, o `SessaoController` devolve o erro "Não existe nenhuma conta com este email" e marca `semConta = true`. O ecrã Entrar mostra o erro e abre logo `CriarContaPage`, com o email já preenchido. As validações (nome vazio, email inválido, palavra-passe curta, palavras-passe diferentes, email repetido) ficam no controller.
+- Este ecrã **não existe no Figma**, por isso usa o mesmo estilo dos campos e botões do ecrã Entrar.
 - O Diário troca entre `ListaPage`, `MapaPage` e `CalendarioPage`.
 - Os detalhes (`RegistoPage`, `ProjetoPage`) abrem com `Navigator.push`.
 
@@ -82,7 +84,7 @@ Mapa completo em `navegacao.md`.
 
 ## 7. Testes
 
-`test/widget_test.dart` tem 12 testes (login, dias seguidos, criar registo, comentar com `copyWith`, mapa e calendário, projetos, comunidade, perfil, administração e o ecrã Entrar). Correr com `flutter test`.
+`test/widget_test.dart` tem 13 testes (login, criar conta, dias seguidos, criar registo, comentar com `copyWith`, mapa e calendário, projetos, comunidade, perfil, administração e o ecrã Entrar). Correr com `flutter test`.
 
 ## 8. Contas de teste
 

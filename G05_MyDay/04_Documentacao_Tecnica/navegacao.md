@@ -6,7 +6,9 @@ Todos os ecrãs do Figma estão implementados (✔).
 01 · Entrar ✔                        (rota '/', em main.dart)
  ├─ Entrar (estudante) ──────▶ Ecrã principal (barra inferior)
  ├─ Entrar (administrador) ──▶ 11 · Administração ✔
- ├─ Criar conta ─────────────▶ Ecrã principal
+ ├─ Entrar (email sem conta) ▶ erro + Criar conta (com o email já escrito)
+ ├─ Criar conta ─────────────▶ Criar conta ─ Criar ─▶ Ecrã principal
+ │                                         └ "Já tens conta? Entrar" ─▶ volta ao Entrar
  └─ Continuar como convidado ▶ Ecrã principal (só conteúdo público)
 
 Ecrã principal (barra inferior)

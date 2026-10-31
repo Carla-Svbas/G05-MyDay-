@@ -8,6 +8,7 @@ class SessaoController extends ChangeNotifier {
   Utilizador? utilizador;
   bool convidado = false;
   String? erro;
+  bool semConta = false;
 
   List<Utilizador> get utilizadores => List.unmodifiable(_utilizadores);
 
@@ -15,7 +16,13 @@ class SessaoController extends ChangeNotifier {
 
   bool entrar(String email, String palavraPasse) {
     email = email.trim().toLowerCase();
+    semConta = false;
     if (!_dadosValidos(email, palavraPasse)) {
+      return false;
+    }
+    semConta = !existeConta(email);
+    if (semConta) {
+      erro = 'Não existe nenhuma conta com este email. Cria uma conta.';
       return false;
     }
     for (final u in _utilizadores) {
@@ -27,12 +34,32 @@ class SessaoController extends ChangeNotifier {
         return true;
       }
     }
-    erro = 'Email ou palavra-passe incorretos.';
+    erro = 'Palavra-passe incorreta.';
     return false;
   }
 
-  bool criarConta(String email, String palavraPasse) {
+  bool existeConta(String email) {
     email = email.trim().toLowerCase();
+    for (final u in _utilizadores) {
+      if (u.email == email) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool criarConta({
+    required String nome,
+    required String email,
+    required String palavraPasse,
+    required String confirmarPalavraPasse,
+    required String curso,
+  }) {
+    email = email.trim().toLowerCase();
+    if (nome.trim().isEmpty) {
+      erro = 'Escreve o teu nome.';
+      return false;
+    }
     if (!_dadosValidos(email, palavraPasse)) {
       return false;
     }
@@ -40,17 +67,19 @@ class SessaoController extends ChangeNotifier {
       erro = 'A palavra-passe precisa de pelo menos 6 caracteres.';
       return false;
     }
-    for (final u in _utilizadores) {
-      if (u.email == email) {
-        erro = 'Já existe uma conta com este email.';
-        return false;
-      }
+    if (palavraPasse != confirmarPalavraPasse) {
+      erro = 'As palavras-passe não são iguais.';
+      return false;
+    }
+    if (existeConta(email)) {
+      erro = 'Já existe uma conta com este email.';
+      return false;
     }
     final novo = Utilizador(
-      nome: email.split('@').first,
+      nome: nome.trim(),
       email: email,
       palavraPasse: palavraPasse,
-      curso: '',
+      curso: curso.trim(),
     );
     _utilizadores.add(novo);
     utilizador = novo;

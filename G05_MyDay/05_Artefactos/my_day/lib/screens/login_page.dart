@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../controllers/controladores.dart';
 import '../widgets/cores.dart';
 import 'admin_page.dart';
+import 'criar_conta_page.dart';
 import 'inicio_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,18 +30,21 @@ class _LoginPageState extends State<LoginPage> {
     final ok = widget.app.sessao.entrar(emailController.text, palavraPasseController.text);
     if (ok) {
       abrirApp();
-    } else {
-      mostrarMensagem(widget.app.sessao.erro!);
+      return;
+    }
+    mostrarMensagem(widget.app.sessao.erro!);
+    if (widget.app.sessao.semConta) {
+      criarConta();
     }
   }
 
   void criarConta() {
-    final ok = widget.app.sessao.criarConta(emailController.text, palavraPasseController.text);
-    if (ok) {
-      abrirApp();
-    } else {
-      mostrarMensagem(widget.app.sessao.erro!);
-    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CriarContaPage(app: widget.app, emailInicial: emailController.text),
+      ),
+    );
   }
 
   void entrarComoConvidado() {
