@@ -2,8 +2,10 @@
 
 ## Elementos do grupo
 
-- _(Nome do aluno 1 — número)_
-- _(Nome do aluno 2 — número)_
+- Carla Germana — 20251243
+- Cristiano Zanzala — 20251017
+- Lurdes Ferraz — 20251345
+- Rodrigo Rodrigues — 20250480
 
 ## Tema do projeto
 
@@ -24,7 +26,7 @@ O **MyDay** é o diário do percurso de estudante. Permite registar o que se apr
 11. **Perfil** — estatísticas, conquistas, definições, terminar sessão e apagar conta
 12. **Administração** — fila de denúncias, registo de ações e desafio da semana
 
-Navegação: barra inferior (Diário, Projetos, +, Comunidade, Perfil) e `Navigator` (push/pop) para os ecrãs de detalhe. O mapa completo da navegação está em `../../04_Documentacao_Tecnica/navegacao.md`.
+Navegação: barra inferior (Diário, Projetos, +, Comunidade, Perfil) e `Navigator` (push/pop) para os ecrãs de detalhe. O mapa completo da navegação está na documentação técnica do grupo (`04_Documentacao_Tecnica/navegacao.md`).
 
 ## Como executar
 
@@ -66,4 +68,4 @@ Nesta fase não há base de dados, API nem armazenamento persistente. Os dados v
 - `lib/screens/` — ecrãs (View)
 - `lib/widgets/` — componentes reutilizáveis (cartões, campos, botões, etiquetas, barra de navegação…)
 
-Documentação completa: `../../04_Documentacao_Tecnica/`.
+Documentação completa: pasta `04_Documentacao_Tecnica/` do repositório do grupo.
