@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/controladores.dart';
+import '../widgets/campo_texto.dart';
 import '../widgets/cores.dart';
 import 'admin_page.dart';
 import 'criar_conta_page.dart';
@@ -167,7 +168,10 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 20),
             etiquetaCampo('Email'),
             const SizedBox(height: 6),
-            campo(emailController, 'assets/icons/mail.png', 'nome@escola.pt', false),
+            CampoTexto(
+                controller: emailController,
+                imagem: 'assets/icons/mail.png',
+                dica: 'nome@escola.pt'),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,7 +189,11 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 6),
-            campo(palavraPasseController, 'assets/icons/lock.png', '••••••••', true),
+            CampoTexto(
+                controller: palavraPasseController,
+                imagem: 'assets/icons/lock.png',
+                dica: '••••••••',
+                escondido: true),
             const SizedBox(height: 20),
             botao('Entrar', entrar, Cores.primaria, Colors.white),
             const SizedBox(height: 10),
@@ -234,35 +242,6 @@ class _LoginPageState extends State<LoginPage> {
     return Text(
       texto,
       style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Cores.tinta),
-    );
-  }
-
-  Widget campo(TextEditingController controller, String icone, String dica, bool escondido) {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: Cores.campoFundo,
-        border: Border.all(color: Cores.campoBorda),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          Image.asset(icone, width: 16, height: 16),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              obscureText: escondido,
-              style: const TextStyle(fontSize: 15, color: Cores.tinta),
-              decoration: InputDecoration.collapsed(
-                hintText: dica,
-                hintStyle: const TextStyle(fontSize: 15, color: Cores.cinzaTexto),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/controladores.dart';
+import '../widgets/botao_icone.dart';
 import '../widgets/cores.dart';
 import '../widgets/formatar_data.dart';
 import 'registo_page.dart';
@@ -145,14 +146,14 @@ class _CalendarioPageState extends State<CalendarioPage> {
   }
 
   Widget botaoMes(IconData icone, VoidCallback aoTocar) {
-    return GestureDetector(
-      onTap: aoTocar,
-      child: Container(
-        width: 36,
-        height: 36,
-        decoration: BoxDecoration(color: Cores.fundo, borderRadius: BorderRadius.circular(10)),
-        child: Icon(icone, size: 18, color: Cores.tinta),
-      ),
+    return BotaoIcone(
+      icone: icone,
+      aoTocar: aoTocar,
+      tamanho: 36,
+      tamanhoIcone: 18,
+      raio: 10,
+      comBorda: false,
+      fundo: Cores.fundo,
     );
   }
 

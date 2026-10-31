@@ -4,6 +4,7 @@ import '../controllers/controladores.dart';
 import '../models/comentario.dart';
 import '../models/registo.dart';
 import '../widgets/avatar.dart';
+import '../widgets/botao_icone.dart';
 import '../widgets/cores.dart';
 import '../widgets/etiqueta.dart';
 import '../widgets/formatar_data.dart';
@@ -194,22 +195,20 @@ class _RegistoPageState extends State<RegistoPage> {
           Positioned(
               top: 48,
               left: 16,
-              child: botaoRedondo(Icons.chevron_left, () => Navigator.pop(context))),
+              child: BotaoIcone(
+                  icone: Icons.chevron_left,
+                  circular: true,
+                  comBorda: false,
+                  aoTocar: () => Navigator.pop(context))),
           Positioned(
-              top: 48, right: 16, child: botaoRedondo(Icons.more_horiz, () => maisOpcoes(registo))),
+              top: 48,
+              right: 16,
+              child: BotaoIcone(
+                  icone: Icons.more_horiz,
+                  circular: true,
+                  comBorda: false,
+                  aoTocar: () => maisOpcoes(registo))),
         ],
-      ),
-    );
-  }
-
-  Widget botaoRedondo(IconData icone, VoidCallback aoTocar) {
-    return GestureDetector(
-      onTap: aoTocar,
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: const BoxDecoration(color: Cores.branco, shape: BoxShape.circle),
-        child: Icon(icone, color: Cores.tinta),
       ),
     );
   }

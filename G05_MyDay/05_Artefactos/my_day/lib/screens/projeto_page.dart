@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../controllers/controladores.dart';
 import '../models/projeto.dart';
 import '../models/registo.dart';
+import '../widgets/botao_icone.dart';
 import '../widgets/cores.dart';
 import '../widgets/formatar_data.dart';
 import '../widgets/seletor.dart';
@@ -148,9 +149,10 @@ class _ProjetoPageState extends State<ProjetoPage> {
         children: [
           Row(
             children: [
-              botaoQuadrado(Icons.chevron_left, () => Navigator.pop(context)),
+              BotaoIcone(icone: Icons.chevron_left, aoTocar: () => Navigator.pop(context)),
               const Spacer(),
-              if (eDono(projeto)) botaoQuadrado(Icons.edit_outlined, () => editar(projeto)),
+              if (eDono(projeto))
+                BotaoIcone(icone: Icons.edit_outlined, aoTocar: () => editar(projeto)),
             ],
           ),
           const SizedBox(height: 15),
@@ -192,22 +194,6 @@ class _ProjetoPageState extends State<ProjetoPage> {
           for (var i = 0; i < registos.length; i++)
             pontoLinhaTemporal(registos[i], i == registos.length - 1),
         ],
-      ),
-    );
-  }
-
-  Widget botaoQuadrado(IconData icone, VoidCallback aoTocar) {
-    return GestureDetector(
-      onTap: aoTocar,
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: Cores.branco,
-          border: Border.all(color: Cores.linha),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Icon(icone, color: Cores.tinta),
       ),
     );
   }

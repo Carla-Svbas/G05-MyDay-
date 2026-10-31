@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../controllers/controladores.dart';
 import '../models/registo.dart';
+import '../widgets/botao_icone.dart';
 import '../widgets/cores.dart';
 import '../widgets/formatar_data.dart';
 import '../widgets/registo_card.dart';
@@ -70,42 +71,21 @@ class ListaPage extends StatelessWidget {
             ],
           ),
         ),
-        botaoRedondo(context, Icons.search, 'A pesquisa estará disponível em breve.', false),
+        botaoAviso(context, Icons.search, 'A pesquisa estará disponível em breve.', false),
         const SizedBox(width: 8),
-        botaoRedondo(context, Icons.notifications_none, 'Não tens notificações novas.', true),
+        botaoAviso(context, Icons.notifications_none, 'Não tens notificações novas.', true),
       ],
     );
   }
 
-  Widget botaoRedondo(BuildContext context, IconData icone, String mensagem, bool temPonto) {
-    return GestureDetector(
-      onTap: () {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(mensagem)));
-      },
-      child: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: Cores.branco,
-          border: Border.all(color: Cores.linha),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Stack(
-          children: [
-            Center(child: Icon(icone, size: 22, color: Cores.tinta)),
-            if (temPonto)
-              Positioned(
-                top: 9,
-                right: 10,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(color: Color(0xFFE5484D), shape: BoxShape.circle),
-                ),
-              ),
-          ],
-        ),
-      ),
+  Widget botaoAviso(BuildContext context, IconData icone, String mensagem, bool temPonto) {
+    return BotaoIcone(
+      icone: icone,
+      tamanhoIcone: 22,
+      raio: 14,
+      temPonto: temPonto,
+      aoTocar: () =>
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(mensagem))),
     );
   }
 

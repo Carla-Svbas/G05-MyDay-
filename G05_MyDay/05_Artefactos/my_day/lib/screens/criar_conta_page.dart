@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/controladores.dart';
+import '../widgets/campo_texto.dart';
 import '../widgets/cores.dart';
 import 'inicio_page.dart';
 
@@ -105,19 +106,41 @@ class _CriarContaPageState extends State<CriarContaPage> {
           ),
           const SizedBox(height: 20),
           etiquetaCampo('Nome'),
-          campo(nomeController, Icons.person_outline, 'O teu nome', false),
+          CampoTexto(
+            controller: nomeController,
+            icone: Icons.person_outline,
+            dica: 'O teu nome',
+          ),
           const SizedBox(height: 12),
           etiquetaCampo('Email'),
-          campo(emailController, Icons.mail_outline, 'nome@escola.pt', false),
+          CampoTexto(
+            controller: emailController,
+            icone: Icons.mail_outline,
+            dica: 'nome@escola.pt',
+          ),
           const SizedBox(height: 12),
           etiquetaCampo('Curso'),
-          campo(cursoController, Icons.school_outlined, 'Ex.: Eng. Informática · IADE', false),
+          CampoTexto(
+            controller: cursoController,
+            icone: Icons.school_outlined,
+            dica: 'Ex.: Eng. Informática · IADE',
+          ),
           const SizedBox(height: 12),
           etiquetaCampo('Palavra-passe'),
-          campo(palavraPasseController, Icons.lock_outline, 'Pelo menos 6 caracteres', true),
+          CampoTexto(
+            controller: palavraPasseController,
+            icone: Icons.lock_outline,
+            dica: 'Pelo menos 6 caracteres',
+            escondido: true,
+          ),
           const SizedBox(height: 12),
           etiquetaCampo('Confirmar palavra-passe'),
-          campo(confirmarController, Icons.lock_outline, 'Repete a palavra-passe', true),
+          CampoTexto(
+            controller: confirmarController,
+            icone: Icons.lock_outline,
+            dica: 'Repete a palavra-passe',
+            escondido: true,
+          ),
           const SizedBox(height: 24),
           SizedBox(
             height: 52,
@@ -155,35 +178,6 @@ class _CriarContaPageState extends State<CriarContaPage> {
       child: Text(
         texto,
         style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Cores.tinta),
-      ),
-    );
-  }
-
-  Widget campo(TextEditingController controller, IconData icone, String dica, bool escondido) {
-    return Container(
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      decoration: BoxDecoration(
-        color: Cores.campoFundo,
-        border: Border.all(color: Cores.campoBorda),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          Icon(icone, size: 16, color: Cores.cinzaTexto),
-          const SizedBox(width: 8),
-          Expanded(
-            child: TextField(
-              controller: controller,
-              obscureText: escondido,
-              style: const TextStyle(fontSize: 15, color: Cores.tinta),
-              decoration: InputDecoration.collapsed(
-                hintText: dica,
-                hintStyle: const TextStyle(fontSize: 15, color: Cores.cinzaTexto),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
