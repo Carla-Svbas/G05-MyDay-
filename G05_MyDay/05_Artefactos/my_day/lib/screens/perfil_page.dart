@@ -332,7 +332,7 @@ class _PerfilPageState extends State<PerfilPage> {
     }
     return Container(
       width: 100,
-      height: 84,
+      padding: const EdgeInsets.fromLTRB(4, 10, 4, 10),
       decoration: BoxDecoration(
         color: const Color(0xFFFAFAFA),
         border: Border.all(color: const Color(0xFFE8EAEE)),
@@ -340,7 +340,6 @@ class _PerfilPageState extends State<PerfilPage> {
       ),
       child: Column(
         children: [
-          const SizedBox(height: 10),
           Container(
             width: 36,
             height: 36,
