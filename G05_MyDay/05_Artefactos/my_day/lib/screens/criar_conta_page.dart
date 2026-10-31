@@ -84,17 +84,13 @@ class _CriarContaPageState extends State<CriarContaPage> {
                   child: const Icon(Icons.chevron_left, color: Cores.tinta),
                 ),
               ),
-              Expanded(
-                child: Center(
-                  child: Image.asset(
-                    'assets/icons/logo.png',
-                    width: 32,
-                    height: 32,
-                    color: Cores.primaria,
-                  ),
-                ),
+              const Spacer(),
+              Image.asset(
+                'assets/icons/logo.png',
+                width: 32,
+                height: 32,
+                color: Cores.primaria,
               ),
-              const SizedBox(width: 44),
             ],
           ),
           const SizedBox(height: 20),
