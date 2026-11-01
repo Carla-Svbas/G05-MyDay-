@@ -1,34 +1,49 @@
-# Guia de estilo (do Figma, ecrã 12)
+# Guia de estilo
 
-Implementado em `05_Artefactos/my_day/lib/theme/app_theme.dart`.
+As cores, a tipografia e as medidas foram tiradas do ecrã 12 do Figma e estão definidas no ficheiro lib/theme/app_theme.dart.
 
 ## Cores
 
-| Nome | Hex | Nome no código |
-|---|---|---|
-| Primária | `#3D5AFE` | `AppColors.primary` |
-| Tinta | `#161A24` | `AppColors.ink` |
-| Texto 2 | `#5B6372` | `AppColors.text2` |
-| Fundo | `#F4F5F7` | `AppColors.background` |
-| Superfície | `#FFFFFF` | `AppColors.surface` |
-| Linha | `#E3E6EC` | `AppColors.line` |
-| Streak | `#FFB020` | `AppColors.streak` |
-| Perigo | `#C62828` | `AppColors.danger` |
+• Primária: #3D5AFE (AppColors.primary)
 
-## Tipografia: Plus Jakarta Sans
+• Texto: #161A24 (AppColors.ink)
 
-| Estilo | Tamanho / peso |
-|---|---|
-| Título | 28 / 800 |
-| Subtítulo | 17 / 700 |
-| Corpo | 15 / 400 (altura 1,5) |
-| Legenda | 12 / 600 |
+• Texto secundário: #5B6372 (AppColors.text2)
 
-A fonte está em `assets/fonts/` e é declarada no `pubspec.yaml`. A licença (OFL) está em `07_Autorizacoes/`.
+• Fundo: #F4F5F7 (AppColors.background)
+
+• Cartões e superfícies: #FFFFFF (AppColors.surface)
+
+• Linhas e separadores: #E3E6EC (AppColors.line)
+
+• Dias seguidos: #FFB020 (AppColors.streak)
+
+• Erros e ações de apagar: #C62828 (AppColors.danger)
+
+## Tipografia
+
+A fonte é a Plus Jakarta Sans, com quatro estilos:
+
+• Título: tamanho 28, peso 800
+
+• Subtítulo: tamanho 17, peso 700
+
+• Texto corrido: tamanho 15, peso 400, altura de linha 1,5
+
+• Legenda: tamanho 12, peso 600
+
+O ficheiro da fonte está em assets/fonts e é declarado no pubspec.yaml. A licença (OFL) está na pasta 07_Autorizacoes.
 
 ## Medidas
 
-- Espaçamento base de 4 px (8 · 12 · 16 · 20 · 24).
-- Raios: 6 (etiquetas), 12 (botões e campos), 16 (cartões), 24 (folhas inferiores).
-- Alvos de toque com pelo menos 44 px.
-- Margem lateral de 20 px.
+Os espaçamentos partem de uma base de 4 px e usam os valores 8, 12, 16, 20 e 24. A margem lateral dos ecrãs é de 20 px e todos os elementos onde se toca têm pelo menos 44 px.
+
+Os cantos arredondados variam com o elemento:
+
+• Etiquetas: 6
+
+• Botões e campos: 12
+
+• Cartões: 16
+
+• Folhas que abrem de baixo: 24
