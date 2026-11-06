@@ -78,10 +78,10 @@ Mostra as estatísticas do estudante e as conquistas (por exemplo, 7 dias seguid
 
 O administrador tem uma fila com as denúncias recebidas e pode ocultar o conteúdo, avisar o autor ou ignorar a denúncia. As ações ficam guardadas num registo, e é também aqui que se gere o desafio da semana.
 
-## 5. Notas sobre o protótipo
+## 5. Notas sobre a versão atual (alpha)
 
 A app foi feita em Flutter, com a arquitetura MVC dada nas aulas (descrita em 04_Documentacao_Tecnica/arquitetura_mvc.md).
 
-Por ser um protótipo, não há base de dados, API nem armazenamento. Os dados são fictícios, vêm de listas em lib/data e perdem-se quando se fecha a app. O login é validado contra utilizadores de exemplo, a câmara, o microfone e o GPS não são usados e o mapa é um fundo desenhado.
+Na segunda entrega, o MyDay passou a ter uma base de dados MySQL (05_Artefactos/Base_Dados) e uma API REST em Node.js com Express (05_Artefactos/Backend). Com a API ligada, o login, a criação de conta, o diário, a comunidade, os projetos, os novos registos e os comentários são lidos e gravados na base de dados. As palavras-passe ficam cifradas e a sessão usa um token JWT. Sem a API, a app continua a funcionar com os dados de exemplo do protótipo. A câmara, o microfone e o GPS ainda não são usados e o mapa continua a ser um fundo desenhado.
 
 Algumas opções mostram apenas uma mensagem: exportar PDF e dados, os códigos para seguir colegas e partilhar projetos, a pesquisa, as notificações, as mensagens e os grupos de estudo. Estas ficam para uma próxima versão.
