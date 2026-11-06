@@ -1,99 +1,87 @@
-# Memória descritiva — MyDay
+# Memória descritiva do MyDay
 
-> **MyDay — o diário do percurso de estudante.**
-> Uma app móvel onde o estudante regista o que aprende, organiza esses registos em projetos e partilha só o que quiser.
+O MyDay é uma app para telemóvel que funciona como diário do percurso de estudante. Serve para registar o que se aprende, organizar esses registos em projetos e partilhar apenas o que se quiser.
 
----
+## 1. Objetivo
 
-## 1. Objetivo da app
+A ideia principal é que o estudante tenha um único sítio onde guarda o que aprende todos os dias e onde consegue ver a sua evolução ao longo do curso.
 
-O MyDay quer ajudar o estudante a **guardar, num só sítio, o que aprende todos os dias** e a ver a sua evolução ao longo do curso.
+Para isso, a app procura:
 
-Em concreto, a app pretende:
+• Tornar rápido registar uma aprendizagem, seja em texto, foto, vídeo, áudio ou com a localização;
 
-- tornar **rápido e simples** registar uma aprendizagem (texto, foto, vídeo, áudio e local);
-- **organizar** os registos por disciplina e por projeto, para mais tarde os encontrar com facilidade;
-- **motivar** o estudante a registar com regularidade (dias seguidos, conquistas, lembrete diário e desafio da semana);
-- permitir **partilhar com controlo**: cada registo pode ser privado, só para amigos ou público;
-- criar uma **comunidade de estudantes** que aprendem uns com os outros, num espaço moderado e seguro.
+• Organizar os registos por disciplina e por projeto, para serem fáceis de encontrar mais tarde;
 
----
+• Motivar o estudante a registar com regularidade, através dos dias seguidos, das conquistas e do desafio da semana;
+
+• Dar controlo sobre a partilha, já que cada registo pode ser privado, só para amigos ou público;
+
+• Criar uma comunidade de estudantes que aprendem uns com os outros, num espaço moderado.
 
 ## 2. Público-alvo
 
-| Grupo | Quem é | O que procura na app |
-|---|---|---|
-| **Principal** | Estudantes do ensino superior (ex.: Eng. Informática no IADE), entre os 18 e os 25 anos, habituados a usar o telemóvel no dia a dia | Um diário de estudo rápido de usar, que organize o trabalho e mostre o progresso |
-| **Secundário** | Colegas de turma e grupos de estudo | Ver o que os outros aprendem, comentar e partilhar materiais |
-| **Visitantes** | Quem ainda não tem conta (modo convidado) | Espreitar o conteúdo público antes de se registar |
-| **Administração** | Moderadores da plataforma | Rever denúncias, ocultar conteúdo impróprio e acompanhar a atividade |
+O público principal são estudantes do ensino superior, entre os 18 e os 25 anos, como os de Engenharia Informática do IADE. Usam o telemóvel todos os dias e querem um diário de estudo rápido, que os ajude a organizar o trabalho e a ver o progresso.
 
----
+Os colegas de turma são um público secundário, interessado em ver o que os outros aprendem e comentar. Quem ainda não tem conta pode entrar como convidado e ver o conteúdo público antes de se registar.
+
+Por fim, há os moderadores, que usam a área de administração para rever denúncias, ocultar conteúdo impróprio e acompanhar a atividade da plataforma.
 
 ## 3. Problema que resolve
 
-Os estudantes aprendem muito todos os dias, mas esse conhecimento **perde-se ou fica espalhado**:
+Os estudantes aprendem muito todos os dias, mas grande parte disso perde-se. Os apontamentos ficam no caderno, as fotos do quadro na galeria, os áudios no WhatsApp e os links no browser, e mais tarde é difícil encontrar o que se aprendeu numa aula ou num projeto.
 
-- **Notas dispersas** — apontamentos no caderno, fotos do quadro na galeria, áudios no WhatsApp, links no browser. Mais tarde é difícil encontrar o que se aprendeu numa aula ou num projeto.
-- **Falta de visão do progresso** — o estudante não tem forma simples de ver quanto já aprendeu, em que disciplinas e com que regularidade.
-- **Pouca motivação para registar** — sem um hábito, os registos ficam esquecidos e só se lembram deles na véspera do exame.
-- **Partilhar é "tudo ou nada"** — nas redes sociais ou se publica para todos ou não se publica. O estudante não controla com facilidade quem vê cada coisa.
-- **Portefólio difícil de montar** — no fim de um projeto ou do curso, é trabalhoso juntar as provas do que se fez.
+Além disso, não existe uma forma simples de ver quanto já se aprendeu, em que disciplinas e com que regularidade. Sem o hábito de registar, as coisas acabam esquecidas até à véspera do exame. Também é trabalhoso juntar, no fim de um projeto ou do curso, as provas do que se fez.
 
-O MyDay junta tudo num **diário único, organizado e privado por defeito**, que o estudante pode partilhar quando e com quem quiser.
+Nas redes sociais, partilhar é quase sempre tudo ou nada: ou se publica para todos ou não se publica.
 
----
+O MyDay junta tudo num diário único e organizado, privado por defeito, que o estudante partilha quando e com quem quiser.
 
-## 4. Principais funcionalidades
+## 4. Funcionalidades
 
-### 4.1 Conta e acesso
-- **Entrar** com email e palavra-passe.
-- **Criar conta** (nome, email, curso e palavra-passe). Se alguém tentar entrar com um email sem conta, a app mostra o erro e abre o ecrã Criar conta com o email já preenchido.
-- **Continuar como convidado** — vê só o conteúdo público, sem poder criar, comentar ou seguir.
-- Seletor de **idioma** no ecrã inicial.
+A app tem 12 ecrãs: os 11 desenhados no Figma e o ecrã de criar conta, que foi acrescentado durante a implementação.
 
-### 4.2 Diário (três vistas)
-- **Lista** — registos por ordem de data, cada um com disciplina, tags e anexos.
-- **Mapa** — registos agrupados pelo local onde foram feitos (ex.: Biblioteca, Laboratório).
-- **Calendário** — dias com registos, total do mês e registos por disciplina.
-- Contador de **dias seguidos** a registar.
+### Conta e acesso
 
-### 4.3 Novo registo
-- Título, texto, disciplina e **tags**.
-- Anexar **fotos, vídeo, áudio e localização**.
-- Associar a um **projeto**.
-- Escolher a **visibilidade**: privado, só amigos ou público.
+O utilizador entra com email e palavra-passe, ou cria uma conta com nome, email, curso e palavra-passe. Se tentar entrar com um email que não tem conta, a app avisa e abre o ecrã de criar conta com o email já preenchido. Também é possível continuar como convidado, mas nesse caso só se vê o conteúdo público, sem criar, comentar ou seguir.
 
-### 4.4 Detalhe do registo
-- Ver o conteúdo completo, os anexos e o local ("Ver no mapa").
-- **Comentar**, marcar como favorito e **denunciar** conteúdo impróprio.
+### Diário
 
-### 4.5 Projetos
-- Criar, renomear e filtrar projetos por visibilidade.
-- Cada projeto mostra a **linha temporal** dos seus registos.
-- **Grupos de estudo** com colegas.
+Os registos podem ser vistos de três formas:
 
-### 4.6 Comunidade
-- Separadores **A seguir** e **Descobrir**, com pesquisa.
-- **Seguir** colegas e ver os registos públicos deles.
-- **Desafio da semana** para motivar novos registos.
+• Lista: agrupados por dia, com a disciplina, as tags e os anexos de cada um.
 
-### 4.7 Perfil
-- Dados pessoais, número de registos e **conquistas** (ex.: 7 dias seguidos, 1.º projeto, 30 dias).
-- Seguidores e pessoas a seguir, e um **código QR** para um colega te seguir.
-- **Configurações**: localização, microfone e **lembrete diário** com hora à escolha.
-- **Exportar os meus dados**, terminar sessão e **apagar conta** (apaga também os registos).
+• Mapa: agrupados pelo local onde foram feitos, como a biblioteca ou o laboratório.
 
-### 4.8 Administração
-- **Fila de moderação** com as denúncias.
-- Ações: **ocultar**, avisar o autor ou ignorar.
-- **Registo de ações** dos moderadores e estatísticas da plataforma.
+• Calendário: com os dias em que houve registos, o total do mês e a divisão por disciplina.
 
----
+O diário mostra também quantos dias seguidos o estudante já registou.
+
+### Novo registo e detalhe
+
+Cada registo tem título, texto, disciplina e tags, e pode incluir multimédia (foto, vídeo ou áudio) e localização. Pode ser associado a um projeto e tem uma visibilidade à escolha (privado, só amigos ou público).
+
+Ao abrir um registo vê-se o conteúdo completo, os comentários e o local no mapa. É possível comentar e denunciar conteúdo impróprio.
+
+### Projetos
+
+Os projetos aparecem numa lista que pode ser filtrada. Ao abrir um projeto vê-se a linha temporal dos seus registos e é possível adicionar um novo registo já associado a ele.
+
+### Comunidade
+
+Mostra as publicações públicas dos colegas, que se podem seguir, e o desafio da semana, que serve para incentivar novos registos. Os grupos de estudo também aparecem neste ecrã, embora ainda não estejam funcionais.
+
+### Perfil
+
+Mostra as estatísticas do estudante e as conquistas (por exemplo, 7 dias seguidos, primeiro projeto ou 30 dias). Tem ainda as definições e as opções para terminar sessão e apagar a conta, o que apaga também todos os registos.
+
+### Administração
+
+O administrador tem uma fila com as denúncias recebidas e pode ocultar o conteúdo, avisar o autor ou ignorar a denúncia. As ações ficam guardadas num registo, e é também aqui que se gere o desafio da semana.
 
 ## 5. Notas sobre o protótipo
 
-- A app foi feita em **Flutter/Dart**, com a arquitetura **MVC** dada nas aulas (ver `04_Documentacao_Tecnica/arquitetura_mvc.md`).
-- Os dados são **fictícios** e ficam em memória (não há base de dados nem servidor).
-- A câmara, o microfone, o GPS, o mapa real, os lembretes, o código QR e a exportação de dados são **simulados**, por se tratar de um protótipo.
-- O design segue os 11 ecrãs feitos no **Figma**.
+A app foi feita em Flutter, com a arquitetura MVC dada nas aulas (descrita em 04_Documentacao_Tecnica/arquitetura_mvc.md).
+
+Por ser um protótipo, não há base de dados, API nem armazenamento. Os dados são fictícios, vêm de listas em lib/data e perdem-se quando se fecha a app. O login é validado contra utilizadores de exemplo, a câmara, o microfone e o GPS não são usados e o mapa é um fundo desenhado.
+
+Algumas opções mostram apenas uma mensagem: exportar PDF e dados, os códigos para seguir colegas e partilhar projetos, a pesquisa, as notificações, as mensagens e os grupos de estudo. Estas ficam para uma próxima versão.
