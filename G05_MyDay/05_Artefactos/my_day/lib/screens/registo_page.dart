@@ -33,6 +33,7 @@ class _RegistoPageState extends State<RegistoPage> {
   void initState() {
     super.initState();
     widget.app.registos.addListener(atualizar);
+    widget.app.registos.carregarDetalhe(widget.registoId).catchError((_) {});
   }
 
   void atualizar() => setState(() {});
@@ -50,12 +51,15 @@ class _RegistoPageState extends State<RegistoPage> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(texto)));
   }
 
-  void enviarComentario() {
-    final erro = widget.app.registos.comentar(
+  Future<void> enviarComentario() async {
+    final erro = await widget.app.registos.comentarOnline(
       widget.registoId,
       widget.app.sessao.utilizador,
       comentarioController.text,
     );
+    if (!mounted) {
+      return;
+    }
     if (erro != null) {
       mostrarMensagem(erro);
       return;

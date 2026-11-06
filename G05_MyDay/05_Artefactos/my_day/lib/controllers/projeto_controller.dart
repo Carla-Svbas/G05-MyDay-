@@ -16,6 +16,33 @@ class ProjetoController extends ChangeNotifier {
 
   List<GrupoEstudo> get grupos => gruposDemo;
 
+  Future<void> carregarDaApi(String euEmail) async {
+    final lista = await registos.api!.meusProjetos();
+    _projetos.removeWhere((p) => p.donoEmail == euEmail);
+    for (var i = 0; i < lista.length; i++) {
+      final dados = lista[i];
+      _projetos.add(Projeto(
+        id: dados['id'],
+        donoEmail: euEmail,
+        nome: dados['titulo'],
+        descricao: dados['descricao'] ?? '',
+        visibilidade: Visibilidade.values.byName(dados['visibilidade']),
+        criadoEm: registos.lerData(dados['criadoEm']),
+        cor: i % 4,
+      ));
+    }
+    notifyListeners();
+  }
+
+  int? idDoProjeto(String? nome) {
+    for (final p in _projetos) {
+      if (p.nome == nome) {
+        return p.id;
+      }
+    }
+    return null;
+  }
+
   List<Projeto> projetosDe(Utilizador? utilizador, {Visibilidade? filtro}) {
     final lista = <Projeto>[];
     for (final p in _projetos) {

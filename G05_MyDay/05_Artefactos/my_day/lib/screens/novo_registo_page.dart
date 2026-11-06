@@ -45,13 +45,14 @@ class _NovoRegistoPageState extends State<NovoRegistoPage> {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(texto)));
   }
 
-  void guardar() {
-    final erro = widget.app.registos.criarRegisto(
+  Future<void> guardar() async {
+    final erro = await widget.app.registos.criarRegistoOnline(
       autor: widget.app.sessao.utilizador!,
       titulo: tituloController.text,
       texto: textoController.text,
       disciplina: disciplina,
       projeto: projeto,
+      projetoId: widget.app.projetos.idDoProjeto(projeto),
       tags: tags,
       visibilidade: visibilidade,
       comLocal: local,
@@ -59,6 +60,9 @@ class _NovoRegistoPageState extends State<NovoRegistoPage> {
       comAudio: audio,
       comVideo: video,
     );
+    if (!mounted) {
+      return;
+    }
     if (erro != null) {
       mostrarMensagem(erro);
       return;

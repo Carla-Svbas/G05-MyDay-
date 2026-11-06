@@ -38,14 +38,22 @@ class _CriarContaPageState extends State<CriarContaPage> {
     super.dispose();
   }
 
-  void criarConta() {
-    final ok = widget.app.sessao.criarConta(
+  Future<void> criarConta() async {
+    final ok = await widget.app.sessao.criarContaOnline(
       nome: nomeController.text,
       email: emailController.text,
       palavraPasse: palavraPasseController.text,
       confirmarPalavraPasse: confirmarController.text,
       curso: cursoController.text,
     );
+    if (ok) {
+      try {
+        await carregarDadosDaApi(widget.app);
+      } catch (_) {}
+    }
+    if (!mounted) {
+      return;
+    }
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     if (!ok) {
       ScaffoldMessenger.of(context).showSnackBar(

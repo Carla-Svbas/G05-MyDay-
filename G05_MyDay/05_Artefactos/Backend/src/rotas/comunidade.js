@@ -26,6 +26,17 @@ rotas.get('/feed', opcional, async (req, res) => {
   res.json(linhas.map(arrumar));
 });
 
+// Quem eu sigo e quem me segue
+rotas.get('/seguimentos', obrigatorio, async (req, res) => {
+  const [aSeguir] = await bd.query(
+    `select u.id, u.nome from seguimento s join utilizador u on u.id = s.seguido_id where s.seguidor_id = ?`,
+    [req.utilizador.id]);
+  const [seguidores] = await bd.query(
+    `select u.id, u.nome from seguimento s join utilizador u on u.id = s.seguidor_id where s.seguido_id = ?`,
+    [req.utilizador.id]);
+  res.json({ aSeguir, seguidores });
+});
+
 // Seguir ou deixar de seguir alguém
 rotas.post('/seguir/:id', obrigatorio, async (req, res) => {
   const outro = Number(req.params.id);

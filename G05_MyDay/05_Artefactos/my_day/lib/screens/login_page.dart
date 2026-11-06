@@ -27,10 +27,22 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void entrar() {
-    final ok = widget.app.sessao.entrar(emailController.text, palavraPasseController.text);
+  Future<void> entrar() async {
+    final ok = await widget.app.sessao.entrarOnline(emailController.text, palavraPasseController.text);
     if (ok) {
-      abrirApp();
+      try {
+        await carregarDadosDaApi(widget.app);
+      } catch (_) {
+        if (mounted) {
+          mostrarMensagem('Não foi possível carregar os dados do servidor.');
+        }
+      }
+      if (mounted) {
+        abrirApp();
+      }
+      return;
+    }
+    if (!mounted) {
       return;
     }
     mostrarMensagem(widget.app.sessao.erro!);

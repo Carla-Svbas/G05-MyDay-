@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import '../data/comunidade_demo.dart';
 import '../data/locais_demo.dart';
+import '../data/myday_api.dart';
 import '../data/registos_demo.dart';
 import '../models/comentario.dart';
 import '../models/denuncia.dart';
@@ -10,14 +11,161 @@ import '../models/registo.dart';
 import '../models/utilizador.dart';
 
 class RegistoController extends ChangeNotifier {
+  final MyDayApi? api;
   final List<Registo> _registos = List.of(registosDemo);
   final List<Denuncia> _denuncias = List.of(denunciasDemo);
   final List<int> _favoritos = [];
+  List<String> _disciplinas = disciplinasDemo;
+  final Map<String, int> _idsDisciplinas = {};
   int _proximoId = 100;
+
+  RegistoController({this.api});
 
   List<Registo> get todos => List.unmodifiable(_registos);
   List<Denuncia> get denuncias => List.unmodifiable(_denuncias);
-  List<String> get disciplinas => disciplinasDemo;
+  List<String> get disciplinas => _disciplinas;
+
+  Future<void> carregarDaApi({
+    required String euEmail,
+    required int euId,
+    required void Function(String chave, String nome) lembrarAutor,
+  }) async {
+    final meus = await api!.meusRegistos();
+    final feed = await api!.feed();
+    final disciplinas = await api!.disciplinas();
+    _idsDisciplinas.clear();
+    for (final d in disciplinas) {
+      _idsDisciplinas[d['nome']] = d['id'];
+    }
+    _disciplinas = _idsDisciplinas.keys.toList();
+    _registos.clear();
+    for (final dados in [...meus, ...feed]) {
+      final autorId = dados['autorId'];
+      final chave = autorId == euId ? euEmail : 'utilizador$autorId';
+      lembrarAutor(chave, dados['autor']);
+      if (!_registos.any((x) => x.id == dados['id'])) {
+        _registos.add(registoDaApi(dados, chave));
+      }
+    }
+    notifyListeners();
+  }
+
+  Registo registoDaApi(Map<String, dynamic> dados, String autorChave) {
+    final morada = dados['morada'] as String?;
+    return Registo(
+      id: dados['id'],
+      autorEmail: autorChave,
+      disciplina: dados['disciplina'] ?? 'Sem disciplina',
+      titulo: dados['titulo'],
+      texto: dados['texto'] ?? '',
+      data: lerData(dados['dataRegisto']),
+      visibilidade: Visibilidade.values.byName(dados['visibilidade']),
+      projeto: dados['projeto'],
+      tags: List<String>.from(dados['tags']),
+      local: morada?.split(',').first,
+      morada: morada,
+      audio: dados['audios'] > 0 ? 'áudio' : null,
+      video: dados['videos'] > 0 ? 'vídeo' : null,
+      fotos: dados['fotos'],
+      oculto: dados['oculto'] == true,
+    );
+  }
+
+  DateTime lerData(String texto) => DateTime.parse(texto.replaceFirst(' ', 'T'));
+
+  Future<void> carregarDetalhe(int id) async {
+    if (api == null || !api!.ligado || procurar(id) == null) {
+      return;
+    }
+    final dados = await api!.registo(id);
+    final comentarios = <Comentario>[];
+    for (final c in dados['listaComentarios']) {
+      comentarios.add(Comentario(
+        id: c['id'],
+        autor: c['autor'],
+        texto: c['texto'],
+        data: lerData(c['criadoEm']),
+      ));
+    }
+    final i = _registos.indexWhere((r) => r.id == id);
+    _registos[i] = _registos[i].copyWith(comentarios: comentarios);
+    notifyListeners();
+  }
+
+  Future<String?> criarRegistoOnline({
+    required Utilizador autor,
+    required String titulo,
+    required String texto,
+    required String? disciplina,
+    required String? projeto,
+    required int? projetoId,
+    required List<String> tags,
+    required Visibilidade visibilidade,
+    required bool comLocal,
+    required int fotos,
+    required bool comAudio,
+    required bool comVideo,
+  }) async {
+    if (api == null || !api!.ligado) {
+      return criarRegisto(
+        autor: autor,
+        titulo: titulo,
+        texto: texto,
+        disciplina: disciplina,
+        projeto: projeto,
+        tags: tags,
+        visibilidade: visibilidade,
+        comLocal: comLocal,
+        fotos: fotos,
+        comAudio: comAudio,
+        comVideo: comVideo,
+      );
+    }
+    if (titulo.trim().isEmpty) {
+      return 'Escreve um título para o registo.';
+    }
+    if (disciplina == null) {
+      return 'Escolhe a disciplina.';
+    }
+    try {
+      final dados = await api!.criarRegisto({
+        'titulo': titulo.trim(),
+        'texto': texto.trim(),
+        'disciplinaId': _idsDisciplinas[disciplina],
+        'projetoId': projetoId,
+        'tags': tags,
+        'visibilidade': visibilidade.name,
+        if (comLocal) 'latitude': 38.7071,
+        if (comLocal) 'longitude': -9.1530,
+        if (comLocal) 'morada': '${localAtual.nome}, ${localAtual.morada}',
+      });
+      _registos.add(registoDaApi(dados, autor.email));
+      notifyListeners();
+      return null;
+    } on ApiErro catch (e) {
+      return e.mensagem;
+    } on SemLigacao {
+      return 'Sem ligação ao servidor. Tenta outra vez.';
+    }
+  }
+
+  Future<String?> comentarOnline(int id, Utilizador? utilizador, String texto) async {
+    if (api == null || !api!.ligado || utilizador == null) {
+      return comentar(id, utilizador, texto);
+    }
+    if (texto.trim().isEmpty) {
+      return 'Escreve o comentário antes de enviar.';
+    }
+    try {
+      await api!.comentar(id, texto.trim());
+      await carregarDetalhe(id);
+      return null;
+    } on ApiErro catch (e) {
+      return e.mensagem;
+    } on SemLigacao {
+      return 'Sem ligação ao servidor. Tenta outra vez.';
+    }
+  }
   List<Local> get locais => locaisDemo;
   Local get localAtual => locaisDemo.first;
 

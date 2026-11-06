@@ -38,6 +38,17 @@ class ComunidadeController extends ChangeNotifier {
     return _seguir[utilizador.email]!.contains(email);
   }
 
+  void definirSeguimentos(String euEmail, List<String> aSeguir, List<String> seguidores) {
+    _seguir[euEmail] = List.of(aSeguir);
+    for (final chave in seguidores) {
+      _seguir[chave] ??= [];
+      if (!_seguir[chave]!.contains(euEmail)) {
+        _seguir[chave]!.add(euEmail);
+      }
+    }
+    notifyListeners();
+  }
+
   void alternarSeguir(Utilizador utilizador, String email) {
     _seguir[utilizador.email] ??= [];
     final lista = _seguir[utilizador.email]!;

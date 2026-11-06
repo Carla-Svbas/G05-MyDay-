@@ -1,11 +1,18 @@
 import 'package:flutter/foundation.dart';
 
+import '../data/myday_api.dart';
 import '../data/utilizadores_demo.dart';
 import '../models/utilizador.dart';
 
 class SessaoController extends ChangeNotifier {
+  final MyDayApi api;
   final List<Utilizador> _utilizadores = List.of(utilizadoresDemo);
   Utilizador? utilizador;
+  int? idNaApi;
+
+  SessaoController({MyDayApi? api}) : api = api ?? MyDayApi();
+
+  bool get online => api.ligado;
   bool convidado = false;
   String? erro;
   bool semConta = false;
@@ -38,6 +45,77 @@ class SessaoController extends ChangeNotifier {
     return false;
   }
 
+  Future<bool> entrarOnline(String email, String palavraPasse) async {
+    email = email.trim().toLowerCase();
+    semConta = false;
+    if (!_dadosValidos(email, palavraPasse)) {
+      return false;
+    }
+    try {
+      final dados = await api.entrar(email, palavraPasse);
+      _entrarComDadosDaApi(dados);
+      return true;
+    } on ApiErro catch (e) {
+      erro = e.mensagem;
+      semConta = e.semConta;
+      return false;
+    } on SemLigacao {
+      return entrar(email, palavraPasse);
+    }
+  }
+
+  Future<bool> criarContaOnline({
+    required String nome,
+    required String email,
+    required String palavraPasse,
+    required String confirmarPalavraPasse,
+    required String curso,
+  }) async {
+    email = email.trim().toLowerCase();
+    if (!_novaContaValida(nome, email, palavraPasse, confirmarPalavraPasse)) {
+      return false;
+    }
+    try {
+      final dados = await api.registar(nome.trim(), email, palavraPasse, curso.trim());
+      _entrarComDadosDaApi(dados);
+      return true;
+    } on ApiErro catch (e) {
+      erro = e.mensagem;
+      return false;
+    } on SemLigacao {
+      return criarConta(
+        nome: nome,
+        email: email,
+        palavraPasse: palavraPasse,
+        confirmarPalavraPasse: confirmarPalavraPasse,
+        curso: curso,
+      );
+    }
+  }
+
+  void _entrarComDadosDaApi(Map<String, dynamic> dados) {
+    final novo = Utilizador(
+      nome: dados['nome'],
+      email: dados['email'],
+      palavraPasse: '',
+      curso: dados['curso'] ?? dados['instituicao'] ?? '',
+      admin: dados['papel'] == 'administrador',
+    );
+    _utilizadores.removeWhere((u) => u.email == novo.email);
+    _utilizadores.add(novo);
+    utilizador = novo;
+    idNaApi = dados['id'];
+    convidado = false;
+    erro = null;
+    notifyListeners();
+  }
+
+  void lembrarAutor(String chave, String nome) {
+    if (!existeConta(chave)) {
+      _utilizadores.add(Utilizador(nome: nome, email: chave, palavraPasse: '', curso: ''));
+    }
+  }
+
   bool existeConta(String email) {
     email = email.trim().toLowerCase();
     for (final u in _utilizadores) {
@@ -56,19 +134,7 @@ class SessaoController extends ChangeNotifier {
     required String curso,
   }) {
     email = email.trim().toLowerCase();
-    if (nome.trim().isEmpty) {
-      erro = 'Escreve o teu nome.';
-      return false;
-    }
-    if (!_dadosValidos(email, palavraPasse)) {
-      return false;
-    }
-    if (palavraPasse.length < 6) {
-      erro = 'A palavra-passe precisa de pelo menos 6 caracteres.';
-      return false;
-    }
-    if (palavraPasse != confirmarPalavraPasse) {
-      erro = 'As palavras-passe não são iguais.';
+    if (!_novaContaValida(nome, email, palavraPasse, confirmarPalavraPasse)) {
       return false;
     }
     if (existeConta(email)) {
@@ -97,6 +163,8 @@ class SessaoController extends ChangeNotifier {
   }
 
   void sair() {
+    api.sair();
+    idNaApi = null;
     utilizador = null;
     convidado = false;
     notifyListeners();
@@ -114,6 +182,25 @@ class SessaoController extends ChangeNotifier {
       }
     }
     return email;
+  }
+
+  bool _novaContaValida(String nome, String email, String palavraPasse, String confirmar) {
+    if (nome.trim().isEmpty) {
+      erro = 'Escreve o teu nome.';
+      return false;
+    }
+    if (!_dadosValidos(email, palavraPasse)) {
+      return false;
+    }
+    if (palavraPasse.length < 6) {
+      erro = 'A palavra-passe precisa de pelo menos 6 caracteres.';
+      return false;
+    }
+    if (palavraPasse != confirmar) {
+      erro = 'As palavras-passe não são iguais.';
+      return false;
+    }
+    return true;
   }
 
   bool _dadosValidos(String email, String palavraPasse) {
