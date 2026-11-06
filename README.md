@@ -29,22 +29,24 @@ O MyDay é um diário do percurso de estudante. Na app regista-se o que se apren
 
 A navegação principal é feita pela barra inferior (Diário, Projetos, +, Comunidade e Perfil), e os ecrãs de detalhe abrem e fecham com o Navigator. O mapa completo está em 04_Documentacao_Tecnica/navegacao.md.
 
+## Organização do código (05_Artefactos)
+
+- Aplicacao_Movel: a app em Flutter/Dart
+- Backend: a API REST em Node.js com Express
+- Base_Dados: create.sql, populate.sql e queries.sql (MySQL)
+- Apresentacoes: os slides de cada apresentação
+
 ## Como executar
 
-Dentro da pasta my_day:
+São três passos: criar a base de dados no MySQL, ligar a API (npm install e npm start, na pasta Backend) e correr a app (flutter pub get e flutter run, na pasta Aplicacao_Movel). As instruções completas estão em 04_Documentacao_Tecnica/como_executar.md.
 
-    flutter pub get
-    flutter run
+Com a API ligada, entra-se com as contas da base de dados (por exemplo ines.carvalho02@gmail.com, palavra-passe myday123; administradora sofia.rebelo@myday.pt). Sem a API, a app continua a funcionar com os dados de exemplo do protótipo: estudante rodrigo@escola.pt (123456) e administrador admin@escola.pt (admin123). Também é possível entrar como convidado.
 
-A app arranca a partir do lib/main.dart e não precisa de configurações nem bibliotecas extra. Os testes correm com flutter test.
+## O que já usa o servidor e o que ainda é simulado
 
-Para entrar podem usar a conta de estudante rodrigo@escola.pt (123456) ou a de administrador admin@escola.pt (admin123). Também é possível entrar como convidado.
+Com a API ligada, o login, a criação de conta, o diário, a comunidade, os projetos, os novos registos e os comentários são lidos e gravados na base de dados MySQL.
 
-## O que é simulado
-
-Nesta fase não há base de dados, API nem armazenamento. Os dados vêm de listas em lib/data e perdem-se quando se fecha a app.
-
-• O login e a criação de conta são validados contra os utilizadores de exemplo, sem autenticação real.
+Continua simulado:
 
 • Anexar foto, vídeo ou áudio apenas marca o registo como tendo multimédia. A câmara e o microfone não chegam a ser usados.
 
@@ -54,7 +56,7 @@ Nesta fase não há base de dados, API nem armazenamento. Os dados vêm de lista
 
 • A pesquisa, as notificações, as mensagens e os grupos de estudo indicam que ficam para uma próxima versão.
 
-• As denúncias e a moderação só funcionam durante a sessão, sobre os dados de exemplo.
+• Na app, as denúncias e a moderação ainda usam os dados de exemplo. A API já tem as rotas de denúncia e de moderação, ligadas à base de dados.
 
 ## Estrutura do código
 
