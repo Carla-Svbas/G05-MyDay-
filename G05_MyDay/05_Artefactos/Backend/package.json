@@ -1,0 +1,23 @@
+{
+  "name": "myday-backend",
+  "version": "1.0.0",
+  "description": "API REST do MyDay (G05) em Node.js + Express + MySQL",
+  "main": "src/servidor.js",
+  "scripts": {
+    "start": "node src/servidor.js",
+    "dev": "node --watch src/servidor.js",
+    "testar": "node testar_api.js"
+  },
+  "author": "Grupo G05",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.5"
+  },
+  "private": true
+}
