@@ -12,6 +12,10 @@ Rodrigo Rodrigues - Nº 20250480
 
 O MyDay é um diário do percurso de estudante. Na app regista-se o que se aprende, em texto, foto, vídeo, áudio ou com a localização, e esses registos podem ser organizados em projetos. Cada registo pode ser privado, só para amigos ou público. A app tem ainda uma área de comunidade e uma área de administração onde se moderam as denúncias.
 
+## Design (Figma)
+
+Os ecrãs e o guia de estilo foram desenhados no Figma: https://www.figma.com/design/Z10SqibLprkXmmXoTZuEwg/G05_MyDay_D01?node-id=5-2
+
 ## Ecrãs
 
 1. Entrar: login, acesso à criação de conta e entrada como convidado

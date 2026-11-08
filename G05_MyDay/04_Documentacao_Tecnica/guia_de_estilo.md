@@ -1,24 +1,26 @@
 # Guia de estilo
 
-As cores, a tipografia e as medidas foram tiradas do ecrã 12 do Figma e estão definidas no ficheiro lib/theme/app_theme.dart.
+As cores, a tipografia e as medidas foram tiradas do ecrã 12 do Figma (guia de estilo). As cores estão definidas na classe Cores, em lib/widgets/cores.dart.
+
+Ficheiro do Figma: https://www.figma.com/design/Z10SqibLprkXmmXoTZuEwg/G05_MyDay_D01?node-id=5-2
 
 ## Cores
 
-• Primária: #3D5AFE (AppColors.primary)
+• Primária: #3D5AFE (Cores.primaria)
 
-• Texto: #161A24 (AppColors.ink)
+• Texto: #161A24 (Cores.tinta)
 
-• Texto secundário: #5B6372 (AppColors.text2)
+• Texto secundário: #5B6372 (Cores.texto2)
 
-• Fundo: #F4F5F7 (AppColors.background)
+• Fundo: #F4F5F7 (Cores.fundo)
 
-• Cartões e superfícies: #FFFFFF (AppColors.surface)
+• Cartões e superfícies: #FFFFFF (Cores.branco)
 
-• Linhas e separadores: #E3E6EC (AppColors.line)
+• Linhas e separadores: #E3E6EC (Cores.linha)
 
-• Dias seguidos: #FFB020 (AppColors.streak)
+• Dias seguidos: #FFB020 (Cores.laranja)
 
-• Erros e ações de apagar: #C62828 (AppColors.danger)
+• Erros e ações de apagar: #C62828 (Cores.perigo)
 
 ## Tipografia
 
