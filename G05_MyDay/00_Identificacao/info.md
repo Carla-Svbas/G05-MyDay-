@@ -6,10 +6,10 @@
 
 | Nome completo | N.º de estudante | Curso | Ano curricular | Contacto institucional |
 |---|---|---|---|---|
-| Carla Sebastião | 20251243 | Engenharia Informática | 2.º ano | _(email institucional)_ |
-| Cristiano Zanzala | 20251017 | Engenharia Informática | 2.º ano | _(email institucional)_ |
-| Lurdes Ferraz | 20251345 | Engenharia Informática | 2.º ano | _(email institucional)_ |
-| Rodrigo Rodrigues | 20250480 | Engenharia Informática | 2.º ano | _(email institucional)_ |
+| Carla Sebastião | 20251243 | Engenharia Informática | 2.º ano | 20251243@iade.pt |
+| Cristiano Zanzala | 20251017 | Engenharia Informática | 2.º ano | 20251017@iade.pt |
+| Lurdes Ferraz | 20251345 | Engenharia Informática | 2.º ano | 20251345@iade.pt |
+| Rodrigo Rodrigues | 20250480 | Engenharia Informática | 2.º ano | 20250480@iade.pt |
 
 - **Curso:** Engenharia Informática
 - **Projeto multidisciplinar — unidades curriculares e docentes:**
