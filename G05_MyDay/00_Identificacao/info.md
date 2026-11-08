@@ -2,11 +2,14 @@
 
 - **Projeto:** MyDay — o diário do percurso de estudante
 - **Grupo:** G05
-- **Elementos:**   
-    Carla Sebastião - Nº 20251243;
-    Cristiano Zanzala - Nº 20251017;
-    Lurdes Ferraz - Nº 20251345;
-    Rodrigo Rodrigues - Nº 20250480.
+- **Elementos:**
+
+| Nome completo | N.º de estudante | Curso | Ano curricular | Contacto institucional |
+|---|---|---|---|---|
+| Carla Sebastião | 20251243 | Engenharia Informática | 2.º ano | _(email institucional)_ |
+| Cristiano Zanzala | 20251017 | Engenharia Informática | 2.º ano | _(email institucional)_ |
+| Lurdes Ferraz | 20251345 | Engenharia Informática | 2.º ano | _(email institucional)_ |
+| Rodrigo Rodrigues | 20250480 | Engenharia Informática | 2.º ano | _(email institucional)_ |
 
 - **Curso:** Engenharia Informática
 - **Unidade curricular:** Programação de Dispositivos Móveis
