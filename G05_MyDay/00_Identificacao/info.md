@@ -12,6 +12,15 @@
 | Rodrigo Rodrigues | 20250480 | Engenharia Informática | 2.º ano | _(email institucional)_ |
 
 - **Curso:** Engenharia Informática
-- **Unidade curricular:** Programação de Dispositivos Móveis
-- **Docente:** João Monge
+- **Projeto multidisciplinar — unidades curriculares e docentes:**
+
+| Unidade curricular | Docente(s) |
+|---|---|
+| Projeto de Desenvolvimento Móvel | Fábio Guilherme |
+| Redes e Comunicações de Dados | Nathan Campos, Pedro Rosa |
+| Programação de Dispositivos Móveis | João Pedro Duarte Barros Monge |
+| Bases de Dados | Miguel Boavida |
+| Interfaces e Usabilidade | Paula Neves |
+| Matemática Discreta | André da Cunha Torcato, Ricardo Manuel Freitas de Sousa |
+
 - **Ano letivo:** 2026/2027

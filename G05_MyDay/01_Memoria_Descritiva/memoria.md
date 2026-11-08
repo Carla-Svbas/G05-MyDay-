@@ -6,8 +6,13 @@
 - **Grupo:** G05 (Carla Sebastião, Cristiano Zanzala, Lurdes Ferraz e Rodrigo Rodrigues)
 - **Ano letivo:** 2026/2027
 - **Semestre:** 1.º semestre (3.º semestre da Licenciatura em Engenharia Informática)
-- **Unidades curriculares:** Projeto Mobile; Programação de Dispositivos Móveis; Bases de Dados; Redes de Comunicação de Dados; Interfaces e Usabilidade; Matemática Discreta
-- **Docentes:** João Monge (Programação de Dispositivos Móveis); Fábio Guilherme (Projeto Mobile); restantes docentes _(a completar)_
+- **Unidades curriculares e docentes (projeto multidisciplinar):**
+  - Projeto de Desenvolvimento Móvel — Fábio Guilherme
+  - Redes e Comunicações de Dados — Nathan Campos e Pedro Rosa
+  - Programação de Dispositivos Móveis — João Pedro Duarte Barros Monge
+  - Bases de Dados — Miguel Boavida
+  - Interfaces e Usabilidade — Paula Neves
+  - Matemática Discreta — André da Cunha Torcato e Ricardo Manuel Freitas de Sousa
 - **Repositório:** https://github.com/Carla-Svbas/G05-MyDay-
 - **Design (Figma):** https://www.figma.com/design/Z10SqibLprkXmmXoTZuEwg/G05_MyDay_D01?node-id=5-2
 
@@ -42,7 +47,7 @@ A motivação é dupla:
 - **Individual:** a aprendizagem tende a ser mais eficaz quando o estudante consegue ver e compreender o seu próprio percurso, o que favorece a reflexão e o acompanhamento da evolução.
 - **Comunitária:** partilhar o percurso com colegas que estudam o mesmo cria motivação, troca de ideias e uma comunidade de estudantes de várias instituições.
 
-Para o grupo, o projeto é também uma oportunidade de juntar num único produto o que se aprende em várias unidades curriculares: programação móvel, bases de dados, redes, interfaces e usabilidade.
+Para o grupo, o projeto é também uma oportunidade de juntar num único produto o que se aprende em várias unidades curriculares: programação de dispositivos móveis, bases de dados, redes e comunicações de dados, interfaces e usabilidade, e matemática discreta.
 
 ### iii. Objetivos
 

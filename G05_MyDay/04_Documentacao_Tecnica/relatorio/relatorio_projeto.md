@@ -233,9 +233,10 @@ Estas APIs têm limites de utilização (por exemplo, o Nominatim exige identifi
 
 | Unidade curricular | Contributo para o projeto |
 |---|---|
+| **Projeto de Desenvolvimento Móvel** | Coordenação do projeto multidisciplinar: proposta, planeamento, relatórios, entregas e apresentações. |
 | **Programação de Dispositivos Móveis** | Aplicação em Dart/Flutter: interfaces, navegação, gestão de estado (MVC com ChangeNotifier), consumo da API e regras de negócio. |
 | **Bases de Dados** | Modelação relacional, esquema em MySQL, views, triggers, procedimentos e pesquisas (`create.sql`, `populate.sql`, `queries.sql`). |
-| **Redes de Comunicação de Dados** | Comunicação HTTP/REST em JSON entre a aplicação e o servidor e consumo de APIs externas. O alojamento do servidor e o HTTPS ainda estão por definir. |
+| **Redes e Comunicações de Dados** | Comunicação HTTP/REST em JSON entre a aplicação e o servidor e consumo de APIs externas. O alojamento do servidor e o HTTPS ainda estão por definir. |
 | **Interfaces e Usabilidade** | Fluxos e protótipos em Figma; guia de estilo; princípios de usabilidade. |
 | **Matemática Discreta** | Implementar um dos métodos aprendidos nas aulas (por definir). |
 
