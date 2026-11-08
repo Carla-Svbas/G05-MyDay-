@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 430" width="800" height="430" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#161A24"/>
+    </marker>
+    <marker id="setaCinza" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8A8F99"/>
+    </marker>
+  </defs>
+  <rect width="800" height="430" fill="#FFFFFF"/>
+
+  <!-- App -->
+  <rect x="20" y="40" width="230" height="250" rx="10" fill="#FFFFFF" stroke="#161A24" stroke-width="2"/>
+  <rect x="20" y="40" width="230" height="34" rx="10" fill="#161A24"/>
+  <rect x="20" y="62" width="230" height="12" fill="#161A24"/>
+  <text x="135" y="62" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">Aplicação móvel</text>
+  <text x="135" y="94" text-anchor="middle" font-size="13" font-weight="bold" fill="#161A24">Flutter / Dart (MVC)</text>
+  <g font-size="11" fill="#161A24">
+    <rect x="38" y="106" width="194" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="135" y="123" text-anchor="middle">screens/ — 14 ecrãs (View)</text>
+    <rect x="38" y="138" width="194" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="135" y="155" text-anchor="middle">controllers/ — estado e ações</text>
+    <rect x="38" y="170" width="194" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="135" y="187" text-anchor="middle">models/ e widgets/</text>
+    <rect x="38" y="202" width="194" height="26" rx="4" fill="#EEF1FF" stroke="#3D5AFE"/><text x="135" y="219" text-anchor="middle" font-weight="bold">data/myday_api.dart (http)</text>
+    <rect x="38" y="234" width="194" height="40" rx="4" fill="#FFFFFF" stroke="#C9CDD4" stroke-dasharray="4 3"/><text x="135" y="251" text-anchor="middle">Dados de exemplo</text><text x="135" y="266" text-anchor="middle" fill="#5B6372">(usados sem servidor)</text>
+  </g>
+
+  <!-- API -->
+  <rect x="300" y="20" width="250" height="290" rx="10" fill="#FFFFFF" stroke="#161A24" stroke-width="2"/>
+  <rect x="300" y="20" width="250" height="34" rx="10" fill="#161A24"/>
+  <rect x="300" y="42" width="250" height="12" fill="#161A24"/>
+  <text x="425" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#FFFFFF">Servidor (local nesta fase)</text>
+  <text x="425" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#161A24">API REST — Node.js + Express</text>
+  <g font-size="11" fill="#161A24">
+    <rect x="318" y="88" width="214" height="26" rx="4" fill="#EEF1FF" stroke="#3D5AFE"/><text x="425" y="105" text-anchor="middle" font-weight="bold">/auth — login, registo, JWT, bcrypt</text>
+    <rect x="318" y="120" width="214" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="425" y="137" text-anchor="middle">/registos — diário, comentários</text>
+    <rect x="318" y="152" width="214" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="425" y="169" text-anchor="middle">/projetos — linha temporal</text>
+    <rect x="318" y="184" width="214" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="425" y="201" text-anchor="middle">/comunidade — feed, seguir</text>
+    <rect x="318" y="216" width="214" height="26" rx="4" fill="#F4F5F7" stroke="#C9CDD4"/><text x="425" y="233" text-anchor="middle">/utilizadores e /admin</text>
+    <rect x="318" y="248" width="214" height="44" rx="4" fill="#FFFFFF" stroke="#161A24"/><text x="425" y="266" text-anchor="middle" font-weight="bold">Regras de visibilidade</text><text x="425" y="281" text-anchor="middle" fill="#5B6372">verificadas no servidor</text>
+  </g>
+
+  <!-- MySQL -->
+  <rect x="330" y="350" width="190" height="64" rx="8" fill="#FFFFFF" stroke="#161A24" stroke-width="2"/>
+  <text x="425" y="374" text-anchor="middle" font-size="14" font-weight="bold" fill="#161A24">MySQL — base myday</text>
+  <text x="425" y="393" text-anchor="middle" font-size="11" fill="#5B6372">24 tabelas · 4 views · 5 triggers</text>
+  <text x="425" y="407" text-anchor="middle" font-size="11" fill="#5B6372">função e 2 procedimentos</text>
+
+  <!-- Ligações -->
+  <line x1="252" y1="215" x2="297" y2="215" stroke="#161A24" stroke-width="2" marker-start="url(#seta)" marker-end="url(#seta)"/>
+  <text x="274" y="184" text-anchor="middle" font-size="10" fill="#161A24">REST</text>
+  <text x="274" y="197" text-anchor="middle" font-size="10" fill="#161A24">JSON</text>
+  <text x="274" y="240" text-anchor="middle" font-size="10" fill="#161A24">JWT</text>
+  <line x1="425" y1="312" x2="425" y2="347" stroke="#161A24" stroke-width="2" marker-start="url(#seta)" marker-end="url(#seta)"/>
+  <text x="433" y="334" font-size="10" fill="#161A24">SQL (mysql2)</text>
+
+  <!-- Próxima fase -->
+  <rect x="600" y="60" width="180" height="100" rx="8" fill="#FFFFFF" stroke="#8A8F99" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="690" y="84" text-anchor="middle" font-size="12" font-weight="bold" fill="#5B6372">APIs públicas</text>
+  <text x="690" y="102" text-anchor="middle" font-size="11" fill="#5B6372">OpenStreetMap, Nominatim</text>
+  <text x="690" y="118" text-anchor="middle" font-size="11" fill="#5B6372">Wikipédia, PubChem</text>
+  <text x="690" y="142" text-anchor="middle" font-size="10" font-style="italic" fill="#8A8F99">próxima fase · cache_api</text>
+  <line x1="552" y1="110" x2="597" y2="110" stroke="#8A8F99" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#setaCinza)"/>
+
+  <rect x="600" y="200" width="180" height="70" rx="8" fill="#FFFFFF" stroke="#8A8F99" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="690" y="224" text-anchor="middle" font-size="12" font-weight="bold" fill="#5B6372">Ficheiros</text><text x="690" y="240" text-anchor="middle" font-size="11" fill="#5B6372">fotos, vídeo e áudio</text>
+  <text x="690" y="258" text-anchor="middle" font-size="10" font-style="italic" fill="#8A8F99">upload na próxima fase</text>
+  <line x1="552" y1="235" x2="597" y2="235" stroke="#8A8F99" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#setaCinza)"/>
+
+  <text x="20" y="320" font-size="10" fill="#5B6372">Linha contínua: já implementado · Tracejado: previsto para a versão beta</text>
+</svg>

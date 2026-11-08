@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" width="820" height="560" font-family="Arial, Helvetica, sans-serif" font-size="11">
+  <rect width="820" height="560" fill="#FFFFFF"/>
+  <style>
+    .t { font-weight: bold; fill: #FFFFFF; font-size: 12px; }
+    .c { fill: #161A24; }
+    .k { fill: #161A24; font-weight: bold; }
+    .f { fill: #3D5AFE; }
+    .l { stroke: #5B6372; stroke-width: 1.4; fill: none; }
+    .m { fill: #161A24; font-size: 10px; font-weight: bold; }
+  </style>
+
+  <!-- ligações (desenhadas primeiro) -->
+  <path class="l" d="M200 95 H300"/>            <text class="m" x="205" y="88">1</text><text class="m" x="288" y="88">N</text>
+  <path class="l" d="M200 110 H260 V300 H300"/>  <text class="m" x="205" y="124">1</text><text class="m" x="288" y="294">N</text>
+  <path class="l" d="M110 190 V250"/>            <text class="m" x="116" y="204">1</text><text class="m" x="116" y="246">N</text>
+  <path class="l" d="M420 160 V250"/>            <text class="m" x="426" y="174">1</text><text class="m" x="426" y="246">N</text>
+  <path class="l" d="M540 300 H600"/>            <text class="m" x="545" y="294">1</text><text class="m" x="588" y="294">N</text>
+  <path class="l" d="M540 80 H600"/>            <text class="m" x="545" y="74">N</text><text class="m" x="590" y="74">1</text>
+  <path class="l" d="M540 265 H570 V104 H600"/>    <text class="m" x="545" y="259">N</text><text class="m" x="590" y="98">1</text>
+  <path class="l" d="M420 375 V420"/>            <text class="m" x="426" y="389">1</text><text class="m" x="426" y="416">N</text>
+  <path class="l" d="M300 360 H220 V430"/>       <text class="m" x="290" y="354">1</text><text class="m" x="226" y="426">N</text>
+  <path class="l" d="M540 360 H660 V420"/>       <text class="m" x="545" y="354">1</text><text class="m" x="666" y="416">N</text>
+    
+  <!-- utilizador -->
+  <rect x="20" y="40" width="180" height="150" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="20" y="40" width="180" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="30" y="57">utilizador</text>
+  <text class="k" x="30" y="82">PK id</text>
+  <text class="c" x="30" y="98">email (único)</text>
+  <text class="c" x="30" y="114">password_hash</text>
+  <text class="c" x="30" y="130">nome, nome_utilizador</text>
+  <text class="c" x="30" y="146">papel (estudante / admin…)</text>
+  <text class="c" x="30" y="162">consent_localizacao/_audio</text>
+  <text class="c" x="30" y="178">criado_em</text>
+
+  <!-- seguimento -->
+  <rect x="20" y="250" width="180" height="110" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="20" y="250" width="180" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="30" y="267">seguimento</text>
+  <text class="k" x="30" y="292">PK, FK seguidor_id</text>
+  <text class="k" x="30" y="308">PK, FK seguido_id</text>
+  <text class="c" x="30" y="324">criado_em</text>
+  <text class="c" x="30" y="344" fill="#5B6372" font-style="italic">amigos = seguem-se os dois</text>
+
+  <!-- projeto -->
+  <rect x="300" y="40" width="240" height="120" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="300" y="40" width="240" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="310" y="57">projeto</text>
+  <text class="k" x="310" y="82">PK id</text>
+  <text class="f" x="310" y="98">FK utilizador_id · FK disciplina_id</text>
+  <text class="c" x="310" y="114">titulo, descricao</text>
+  <text class="c" x="310" y="130">visibilidade (privado/amigos/publico)</text>
+  <text class="c" x="310" y="146">criado_em</text>
+
+  <!-- registo -->
+  <rect x="300" y="250" width="240" height="125" rx="4" fill="#FFFFFF" stroke="#3D5AFE" stroke-width="2"/>
+  <rect x="300" y="250" width="240" height="24" rx="4" fill="#3D5AFE"/>
+  <text class="t" x="310" y="267">registo</text>
+  <text class="k" x="310" y="292">PK id · uuid_cliente (único)</text>
+  <text class="f" x="310" y="308">FK utilizador_id · projeto_id · disciplina_id</text>
+  <text class="c" x="310" y="324">titulo, texto, visibilidade (ou herda)</text>
+  <text class="c" x="310" y="340">latitude/longitude + versões aprox.</text>
+  <text class="c" x="310" y="356">morada, oculto, data_registo</text>
+
+  <!-- disciplina -->
+  <rect x="600" y="40" width="200" height="80" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="600" y="40" width="200" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="610" y="57">disciplina</text>
+  <text class="k" x="610" y="82">PK id</text>
+  <text class="c" x="610" y="98">nome (único), area</text>
+
+  <!-- denuncia (para o admin) -->
+  <rect x="600" y="170" width="200" height="160" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="600" y="170" width="200" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="610" y="187">denuncia</text>
+  <text class="k" x="610" y="212">PK id</text>
+  <text class="f" x="610" y="228">FK denunciante_id</text>
+  <text class="f" x="610" y="244">FK registo_id / projeto_id /</text>
+  <text class="f" x="610" y="260">comentario_id (um só)</text>
+  <text class="c" x="610" y="276">motivo, estado</text>
+  <text class="f" x="610" y="292">FK tratada_por (admin)</text>
+  <text class="c" x="610" y="308">tratada_em, criado_em</text>
+
+  <!-- ficheiro -->
+  <rect x="320" y="420" width="200" height="110" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="320" y="420" width="200" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="330" y="437">ficheiro</text>
+  <text class="k" x="330" y="462">PK id</text>
+  <text class="f" x="330" y="478">FK registo_id</text>
+  <text class="c" x="330" y="494">tipo (foto/video/audio)</text>
+  <text class="c" x="330" y="510">caminho, mime_type, tamanho</text>
+
+  <!-- registo_tag + tag -->
+  <rect x="130" y="430" width="160" height="90" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="130" y="430" width="160" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="140" y="447">registo_tag → tag</text>
+  <text class="k" x="140" y="472">PK, FK registo_id</text>
+  <text class="k" x="140" y="488">PK, FK tag_id</text>
+  <text class="c" x="140" y="506" fill="#5B6372" font-style="italic">tag: id, nome (único)</text>
+
+  <!-- comentario -->
+  <rect x="560" y="420" width="160" height="110" rx="4" fill="#FFFFFF" stroke="#161A24" stroke-width="1.5"/>
+  <rect x="560" y="420" width="160" height="24" rx="4" fill="#161A24"/>
+  <text class="t" x="570" y="437">comentario</text>
+  <text class="k" x="570" y="462">PK id</text>
+  <text class="f" x="570" y="478">FK utilizador_id</text>
+  <text class="f" x="570" y="494">FK registo_id ou</text>
+  <text class="f" x="570" y="510">FK projeto_id</text>
+
+  <text x="20" y="22" font-size="11" fill="#5B6372">Entidades principais (12 de 24 tabelas). Restantes: mensagem, favorito, grupo, grupo_membro, grupo_registo, lembrete, conquista, utilizador_conquista,</text>
+  <text x="20" y="550" font-size="11" fill="#5B6372">desafio, destaque, registo_acoes, cache_api, utilizador_segue_tag e utilizador_segue_disciplina — descritas no Dicionário de Dados.</text>
+</svg>
