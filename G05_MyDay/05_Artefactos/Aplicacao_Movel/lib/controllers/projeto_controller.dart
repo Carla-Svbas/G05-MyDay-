@@ -18,7 +18,7 @@ class ProjetoController extends ChangeNotifier {
 
   Future<void> carregarDaApi(String euEmail) async {
     final lista = await registos.api!.meusProjetos();
-    _projetos.removeWhere((p) => p.donoEmail == euEmail);
+    _projetos.clear();
     for (var i = 0; i < lista.length; i++) {
       final dados = lista[i];
       _projetos.add(Projeto(

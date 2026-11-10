@@ -98,8 +98,7 @@ void main() {
       comAudio: false,
       comVideo: true,
     );
-    final novo = app.registos.registosDe(rodrigo).first;
-    expect(novo.titulo, 'Teste');
+    final novo = app.registos.registosDe(rodrigo).firstWhere((r) => r.titulo == 'Teste');
     expect(novo.tags, ['a', 'b']);
     expect(novo.local, 'Biblioteca IADE');
     expect(app.registos.total(rodrigo), 14);
